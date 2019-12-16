@@ -1,16 +1,22 @@
 {% extends "base.html.twig" %}
 {% block title %}Empresas{% endblock %}
 {% block body %}
-<table class="table table-striped">
-    <thead>
+<table class="table table-striped w-50 mx-auto">
+    <thead class="thead-dark">
         <tr>
-            <th>Empresa</th>
-            <th>Opciones</th>
+            <th class="w-50">Empresa</th>
+            <th class="w-50">Opciones</th>
         </tr>
     </thead>
     <tbody>
         {% for empresa in empresas %}
-            <tr><td><a href="#">Nombre empresa</a></td></tr>
+            <tr>
+                <td>{{ empresa.nombre_empresa }}, del sector: {{ empresa.email_empresa }}</td>
+                <td>
+                    <button class="btn btn-success mr-2" href="#">Modificar</a>
+                    <button class="btn btn-danger" href="#">Eliminar</a>
+                </td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>
