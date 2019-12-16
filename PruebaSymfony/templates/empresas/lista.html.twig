@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title %}Empresas{% endblock %}
+{% block body %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Empresa</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for empresa in empresas %}
+            <tr><td><a href="#">Nombre empresa</a></td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
