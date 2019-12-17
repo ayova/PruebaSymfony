@@ -11,13 +11,15 @@
     <tbody>
         {% for empresa in empresas %}
             <tr>
-                <td>{{ empresa.nombre_empresa }}, del sector: {{ empresa.email_empresa }}</td>
-                <td>
-                    <button class="btn btn-success mr-2" href="#">Modificar</a>
-                    <button class="btn btn-danger" href="#">Eliminar</a>
+                <td>{{ empresa.nombre_empresa }}, del sector: {{ sector[empresa.sector_empresa -1 ].nombre_sector | lower }} </td>
+                <td> 
+                    <button class="btn btn-success mr-2" href="./modificar">Modificar</a>
+                    <button class="btn btn-danger" href="./eliminar">Eliminar</a>
                 </td>
             </tr>
         {% endfor %}
+
     </tbody>
 </table>
 {% endblock %}
+
