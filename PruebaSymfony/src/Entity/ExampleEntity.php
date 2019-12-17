@@ -27,8 +27,8 @@ class ExampleEntity
     }
 
     public function __set($id = null, string $name = null){
-        $id = (int)$id;
-        $this->id = $id;
+        
+        $this->id = $this->id;
         $this->name = $name;
     }
 
