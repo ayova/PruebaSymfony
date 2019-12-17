@@ -34,11 +34,6 @@ class Empresa
      */
     public $sector_empresa;
 
-
-    
-
-
-
     //funciones para obtener info de la base de datos
     public function getId_empresa(){
         return $this->id_empresa;
@@ -73,10 +68,6 @@ class Empresa
         $this->sector_empresa = $sector_empresa;
     }
 
-    // public function __get($id){
-    //     $getAll = array('id_empresa' => $this->id_empresa,'nombre_empresa' => $this->nombre_empresa,'tlf_empresa' => $this->tlf_empresa,'email_empresa' => $this->email_empresa,'sector_empresa' => $this->sector_empresa);
-
-    // }
 
 
 

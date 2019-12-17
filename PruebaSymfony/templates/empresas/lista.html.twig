@@ -1,25 +1,37 @@
 {% extends "base.html.twig" %}
 {% block title %}Empresas{% endblock %}
 {% block body %}
-<table class="table table-striped w-50 mx-auto mt-3">
+<table class="table table-striped w-50 mx-auto mt-3 col-5">
     <thead class="thead-dark">
         <tr>
-            <th class="w-50">Empresa</th>
-            <th class="w-50">Opciones</th>
+            <th class="w-50"><p class="text-center my-0">Empresa</p></th>
+            <th class="w-25"><p class="text-center my-0">Opciones</p></th>
         </tr>
     </thead>
     <tbody>
         {% for empresa in empresas %}
             <tr>
                 <td>{{ empresa.nombre_empresa }}, del sector: {{ sector[empresa.sector_empresa -1 ].nombre_sector | lower }} </td>
-                <td> 
-                    <button class="btn btn-success mr-2" href="./modificar">Modificar</a>
-                    <button class="btn btn-danger" href="./eliminar">Eliminar</a>
+                <td class="text-center"> 
+                <row>
+                    <a class="btn btn-success mr-2" 
+                    href="./empresa/editar/{{ empresa.id_empresa }}"
+                    data-id={{ empresa.id_empresa }}>Modificar</a>
+                    <a class="btn btn-danger btn-eliminar"
+                    href="#"
+                     data-id={{ empresa.id_empresa }}>Eliminar</a>
+                    </row>
                 </td>
             </tr>
         {% endfor %}
-
     </tbody>
 </table>
+<div class="container col-3 mx-auto my-3  text-center">
+<a class="btn btn-floating btn-primary centered mx-auto" href="./empresa/crear">Crear empresa</a>
+</div>
 {% endblock %}
 
+{% block javascripts %}
+<scrpipt src="js/main.js"></scrpipt>
+{% endblock %}
+{#  href="./empresa/borrar/{{ empresa.id_empresa }}" #}

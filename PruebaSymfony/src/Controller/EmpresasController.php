@@ -58,10 +58,53 @@ class EmpresasController extends AbstractController{
         return $this->render('empresas/crear.html.twig', array(
             'form' => $form->createView()
         ));
-
-         
-
     }
 
+        /**
+     * @Route("/empresa/editar/{$id}", name="editar_empresa")
+     * Method({"GET","POST"})
+     */
+    public function editarEmpresa(Request $request, $id){
+        $empresa = new Empresa();
+        $empresa = $this->getDoctrine()->getRepository(Empresa::class)->find($id);
+        $form = $this->createFormBuilder($empresa)
+        ->add('nombre_empresa', TextType::class, array('required'=>true,))
+        ->add('tlf_empresa', IntegerType::class, array('required'=>false,))
+        ->add('email_empresa', TextType::class, array('required'=>false,))
+        ->add('sector_empresa', IntegerType::class, array('required'=>true,))
+        ->add('save', SubmitType::class, array('attr'=>array('class'=>'btn btn-success')))
+        ->getForm();
+       
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            //manage request when true
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute("empresa");
+        }
+
+        return $this->render('empresas/editar.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/empresa/borrar/{$id}", name="borrar_empresa")
+     * @Method({"DELETE"})
+     */
+    public function borrarEmpresa(Request $request, $id){
+        $empresa = $this->getRepository(Empresa::class)->findOneById(array(
+            'id' => $id,
+        )); 
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($empresa);
+        $entityManager->flush();
+
+        $response = new Response();
+        $response->send();
+    }
 
 }
